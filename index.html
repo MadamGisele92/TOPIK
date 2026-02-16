@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TOPIK Quest: Blush Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Gaegu:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top-bar card">
+    <div>
+      <p class="eyebrow">Korean Mastery Adventure</p>
+      <h1>TOPIK Quest: Blush Academy</h1>
+      <p class="sub">6 levels · 90 lessons · game-inspired practice toward TOPIK fluency</p>
+    </div>
+    <div class="mascot-wrap" aria-label="Mascot encouraging learner">
+      <div class="mascot" role="img" aria-label="Adorable bunny mascot named Bori">
+        <div class="face">
+          <span class="eye"></span>
+          <span class="eye"></span>
+        </div>
+        <p class="speech" id="mascotSpeech">안녕! Let's make Korean sparkle ✨</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar card">
+      <h2>Levels</h2>
+      <p class="small">Each level includes 15 themed lessons with flashcards, memory match, fill-in-the-blank, and scenario practice.</p>
+      <div id="levelList" class="level-list"></div>
+      <div class="progress card mini">
+        <h3>Global Progress</h3>
+        <p><strong id="completedLessons">0</strong>/90 lessons completed</p>
+        <div class="progress-track"><span id="globalProgress"></span></div>
+      </div>
+    </aside>
+
+    <section class="content card">
+      <div class="lesson-header">
+        <div>
+          <p class="eyebrow" id="lessonPath"></p>
+          <h2 id="lessonTitle">Choose a lesson to begin</h2>
+          <p id="lessonTheme"></p>
+        </div>
+        <button id="completeBtn" class="btn gold" disabled>Mark Lesson Complete</button>
+      </div>
+
+      <div id="activityGrid" class="activity-grid hidden">
+        <article class="activity card mini" id="flashcardPanel">
+          <h3>Flash Cards</h3>
+          <p id="flashPrompt">Click start to reveal key vocabulary.</p>
+          <div class="flash-answer" id="flashAnswer">—</div>
+          <div class="actions">
+            <button class="btn" id="flashNext">Next card</button>
+          </div>
+        </article>
+
+        <article class="activity card mini" id="memoryPanel">
+          <h3>Memory Match</h3>
+          <p>Find matching Korean and English pairs.</p>
+          <div id="memoryBoard" class="memory-board"></div>
+          <p class="small" id="memoryStatus">Matches: 0</p>
+        </article>
+
+        <article class="activity card mini" id="fillPanel">
+          <h3>Fill in the Blank</h3>
+          <p id="fillSentence">—</p>
+          <input type="text" id="fillInput" placeholder="Type Korean answer" />
+          <div class="actions">
+            <button class="btn" id="fillCheck">Check</button>
+            <span id="fillResult" class="small"></span>
+          </div>
+        </article>
+
+        <article class="activity card mini" id="scenarioPanel">
+          <h3>Scenario Challenge</h3>
+          <p id="scenarioPrompt">—</p>
+          <div id="scenarioChoices" class="choices"></div>
+          <p id="scenarioResult" class="small"></p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="card footer">
+    <p>
+      Designed to build TOPIK readiness from survival Korean to advanced social, academic, and workplace proficiency.
+      Keep leveling up with Bori and review daily for best results! 💗
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
