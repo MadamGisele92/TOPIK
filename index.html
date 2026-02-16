@@ -10,87 +10,92 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="top-bar card">
+  <header class="game-header card">
     <div>
-      <p class="eyebrow">Korean Mastery Adventure</p>
+      <p class="eyebrow">Korean RPG Learning Adventure</p>
       <h1>TOPIK Quest: Blush Academy</h1>
-      <p class="sub">6 levels · 90 lessons · game-inspired practice toward TOPIK fluency</p>
+      <p class="sub">Six worlds • 90 lessons • separate game pages for every challenge</p>
     </div>
-    <div class="mascot-wrap" aria-label="Mascot encouraging learner">
-      <div class="mascot" role="img" aria-label="Adorable bunny mascot named Bori">
-        <div class="face">
-          <span class="eye"></span>
-          <span class="eye"></span>
-        </div>
-        <p class="speech" id="mascotSpeech">안녕! Let's make Korean sparkle ✨</p>
-      </div>
+    <div class="hud">
+      <p>⭐ XP: <strong id="xpValue">0</strong></p>
+      <p>🪙 Coins: <strong id="coinValue">0</strong></p>
+      <p>🔥 Streak: <strong id="streakValue">0</strong></p>
+      <p>💖 Hearts: <strong id="heartsValue">5</strong></p>
+    </div>
+    <div class="mascot" role="img" aria-label="Bori mascot rabbit">
+      <div class="face"><span class="eye"></span><span class="eye"></span></div>
+      <p id="mascotSpeech">안녕! Pick a world and start your quest ✨</p>
     </div>
   </header>
 
-  <main class="layout">
-    <aside class="sidebar card">
-      <h2>Levels</h2>
-      <p class="small">Each level includes 15 themed lessons with flashcards, memory match, fill-in-the-blank, and scenario practice.</p>
-      <div id="levelList" class="level-list"></div>
-      <div class="progress card mini">
-        <h3>Global Progress</h3>
-        <p><strong id="completedLessons">0</strong>/90 lessons completed</p>
-        <div class="progress-track"><span id="globalProgress"></span></div>
-      </div>
-    </aside>
+  <nav class="card tabs" id="pageTabs">
+    <button class="tab active" data-page="mapPage">🗺️ World Map</button>
+    <button class="tab" data-page="lessonPage">📘 Lesson Hub</button>
+    <button class="tab" data-page="flashPage">🃏 Flash Arena</button>
+    <button class="tab" data-page="memoryPage">🧠 Memory Temple</button>
+    <button class="tab" data-page="blankPage">✍️ Blank Forge</button>
+    <button class="tab" data-page="scenarioPage">🎭 Scenario Theater</button>
+  </nav>
 
-    <section class="content card">
-      <div class="lesson-header">
+  <main>
+    <section id="mapPage" class="page card">
+      <h2>World Map (TOPIK 1-6)</h2>
+      <p class="small">Each world has 15 quests. Clear lessons to unlock Korean mastery from survival to near-native fluency.</p>
+      <div id="worldGrid" class="world-grid"></div>
+    </section>
+
+    <section id="lessonPage" class="page card hidden">
+      <div class="split-head">
         <div>
-          <p class="eyebrow" id="lessonPath"></p>
-          <h2 id="lessonTitle">Choose a lesson to begin</h2>
-          <p id="lessonTheme"></p>
+          <p class="eyebrow" id="lessonPath">No lesson selected</p>
+          <h2 id="lessonTitle">Choose a lesson from any world</h2>
+          <p id="lessonFocus" class="small">Your quest details will appear here.</p>
         </div>
-        <button id="completeBtn" class="btn gold" disabled>Mark Lesson Complete</button>
+        <button id="completeLessonBtn" class="btn gold" disabled>🏁 Complete Quest</button>
       </div>
+      <div id="lessonList" class="lesson-list"></div>
+    </section>
 
-      <div id="activityGrid" class="activity-grid hidden">
-        <article class="activity card mini" id="flashcardPanel">
-          <h3>Flash Cards</h3>
-          <p id="flashPrompt">Click start to reveal key vocabulary.</p>
-          <div class="flash-answer" id="flashAnswer">—</div>
-          <div class="actions">
-            <button class="btn" id="flashNext">Next card</button>
-          </div>
-        </article>
-
-        <article class="activity card mini" id="memoryPanel">
-          <h3>Memory Match</h3>
-          <p>Find matching Korean and English pairs.</p>
-          <div id="memoryBoard" class="memory-board"></div>
-          <p class="small" id="memoryStatus">Matches: 0</p>
-        </article>
-
-        <article class="activity card mini" id="fillPanel">
-          <h3>Fill in the Blank</h3>
-          <p id="fillSentence">—</p>
-          <input type="text" id="fillInput" placeholder="Type Korean answer" />
-          <div class="actions">
-            <button class="btn" id="fillCheck">Check</button>
-            <span id="fillResult" class="small"></span>
-          </div>
-        </article>
-
-        <article class="activity card mini" id="scenarioPanel">
-          <h3>Scenario Challenge</h3>
-          <p id="scenarioPrompt">—</p>
-          <div id="scenarioChoices" class="choices"></div>
-          <p id="scenarioResult" class="small"></p>
-        </article>
+    <section id="flashPage" class="page card hidden">
+      <h2>Flash Arena</h2>
+      <p class="small" id="flashPrompt">Select a lesson first.</p>
+      <div class="panel">
+        <p class="korean" id="flashFront">—</p>
+        <p id="flashBack">—</p>
       </div>
+      <div class="controls">
+        <button id="revealFlashBtn" class="btn">Reveal Meaning</button>
+        <button id="nextFlashBtn" class="btn gold">Next Card</button>
+      </div>
+    </section>
+
+    <section id="memoryPage" class="page card hidden">
+      <h2>Memory Temple</h2>
+      <p class="small">Pair Korean and English cards. A full clear gives bonus XP.</p>
+      <div id="memoryBoard" class="memory-board"></div>
+      <p id="memoryStatus" class="small">Matches: 0/3</p>
+    </section>
+
+    <section id="blankPage" class="page card hidden">
+      <h2>Blank Forge</h2>
+      <p id="blankSentence">Choose a lesson to begin.</p>
+      <input id="blankInput" type="text" placeholder="Type your Korean answer" />
+      <div class="controls">
+        <button id="checkBlankBtn" class="btn gold">Check Answer</button>
+        <span id="blankResult" class="small"></span>
+      </div>
+    </section>
+
+    <section id="scenarioPage" class="page card hidden">
+      <h2>Scenario Theater</h2>
+      <p id="scenarioPrompt">Choose a lesson to load a scenario challenge.</p>
+      <div id="scenarioChoices" class="choices"></div>
+      <p id="scenarioResult" class="small"></p>
     </section>
   </main>
 
   <footer class="card footer">
-    <p>
-      Designed to build TOPIK readiness from survival Korean to advanced social, academic, and workplace proficiency.
-      Keep leveling up with Bori and review daily for best results! 💗
-    </p>
+    <p>Train daily with Bori! By finishing worlds and replaying game pages, you'll grow from TOPIK beginner to advanced confidence. 💗</p>
   </footer>
 
   <script src="app.js"></script>
