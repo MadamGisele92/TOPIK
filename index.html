@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TOPIK Quest: Blush Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Gaegu:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="game-header card">
+    <div>
+      <p class="eyebrow">Korean RPG Learning Adventure</p>
+      <h1>TOPIK Quest: Blush Academy</h1>
+      <p class="sub">Six worlds • 90 lessons • separate game pages for every challenge</p>
+    </div>
+    <div class="hud">
+      <p>⭐ XP: <strong id="xpValue">0</strong></p>
+      <p>🪙 Coins: <strong id="coinValue">0</strong></p>
+      <p>🔥 Streak: <strong id="streakValue">0</strong></p>
+      <p>💖 Hearts: <strong id="heartsValue">5</strong></p>
+    </div>
+    <div class="mascot" role="img" aria-label="Bori mascot rabbit">
+      <div class="face"><span class="eye"></span><span class="eye"></span></div>
+      <p id="mascotSpeech">안녕! Pick a world and start your quest ✨</p>
+    </div>
+  </header>
+
+  <nav class="card tabs" id="pageTabs">
+    <button class="tab active" data-page="mapPage">🗺️ World Map</button>
+    <button class="tab" data-page="lessonPage">📘 Lesson Hub</button>
+    <button class="tab" data-page="flashPage">🃏 Flash Arena</button>
+    <button class="tab" data-page="memoryPage">🧠 Memory Temple</button>
+    <button class="tab" data-page="blankPage">✍️ Blank Forge</button>
+    <button class="tab" data-page="scenarioPage">🎭 Scenario Theater</button>
+  </nav>
+
+  <main>
+    <section id="mapPage" class="page card">
+      <h2>World Map (TOPIK 1-6)</h2>
+      <p class="small">Each world has 15 quests. Clear lessons to unlock Korean mastery from survival to near-native fluency.</p>
+      <div id="worldGrid" class="world-grid"></div>
+    </section>
+
+    <section id="lessonPage" class="page card hidden">
+      <div class="split-head">
+        <div>
+          <p class="eyebrow" id="lessonPath">No lesson selected</p>
+          <h2 id="lessonTitle">Choose a lesson from any world</h2>
+          <p id="lessonFocus" class="small">Your quest details will appear here.</p>
+        </div>
+        <button id="completeLessonBtn" class="btn gold" disabled>🏁 Complete Quest</button>
+      </div>
+      <div id="lessonList" class="lesson-list"></div>
+    </section>
+
+    <section id="flashPage" class="page card hidden">
+      <h2>Flash Arena</h2>
+      <p class="small" id="flashPrompt">Select a lesson first.</p>
+      <div class="panel">
+        <p class="korean" id="flashFront">—</p>
+        <p id="flashBack">—</p>
+      </div>
+      <div class="controls">
+        <button id="revealFlashBtn" class="btn">Reveal Meaning</button>
+        <button id="nextFlashBtn" class="btn gold">Next Card</button>
+      </div>
+    </section>
+
+    <section id="memoryPage" class="page card hidden">
+      <h2>Memory Temple</h2>
+      <p class="small">Pair Korean and English cards. A full clear gives bonus XP.</p>
+      <div id="memoryBoard" class="memory-board"></div>
+      <p id="memoryStatus" class="small">Matches: 0/3</p>
+    </section>
+
+    <section id="blankPage" class="page card hidden">
+      <h2>Blank Forge</h2>
+      <p id="blankSentence">Choose a lesson to begin.</p>
+      <input id="blankInput" type="text" placeholder="Type your Korean answer" />
+      <div class="controls">
+        <button id="checkBlankBtn" class="btn gold">Check Answer</button>
+        <span id="blankResult" class="small"></span>
+      </div>
+    </section>
+
+    <section id="scenarioPage" class="page card hidden">
+      <h2>Scenario Theater</h2>
+      <p id="scenarioPrompt">Choose a lesson to load a scenario challenge.</p>
+      <div id="scenarioChoices" class="choices"></div>
+      <p id="scenarioResult" class="small"></p>
+    </section>
+  </main>
+
+  <footer class="card footer">
+    <p>Train daily with Bori! By finishing worlds and replaying game pages, you'll grow from TOPIK beginner to advanced confidence. 💗</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
